@@ -2,7 +2,8 @@ $text-color:                  #3f3f3f;
 $body-background-color:       #f4f4f4;
 $container-background-color:  #ffffff;
 
-$primary-color:        #00f0a2;
+$error-color:                 #e60000;
+$primary-color:               #00f0a2;
 
 * {
   box-sizing: border-box;
@@ -74,6 +75,19 @@ button[type=submit]:hover {
   content: "";
   clear: both;
   display: table;
+}
+
+.notification {
+  padding: 10px;
+  text-align: center;
+}
+
+.notification.info span {
+  color: darken($primary-color, 25%);
+}
+
+.notification.error span  {
+  color: $error-color;
 }
 
 /* 
