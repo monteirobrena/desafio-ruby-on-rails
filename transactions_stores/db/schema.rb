@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_074012) do
 
   create_table "stores", force: :cascade do |t|
     t.string "name"
-    t.string "owen"
+    t.string "owner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
