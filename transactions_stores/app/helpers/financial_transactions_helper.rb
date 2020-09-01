@@ -3,7 +3,7 @@ module FinancialTransactionsHelper
   OWNER_SIZE = 14
   DIVISOR_CURRENCY = 100.00
 
-  def read_file_to_save_data(filename)
+  def self.read_file_to_save_data(filename)
     File.open(filename, 'r').each_line do |line|
       data = split(line)
 
@@ -17,7 +17,7 @@ module FinancialTransactionsHelper
     end
   end
 
-  def save(transaction)
+  def self.save(transaction)
     transaction_type = TransactionType.find(transaction[:type])
 
     recipient = Recipient.find_or_create_by(cpf: transaction[:cpf], 
@@ -33,23 +33,23 @@ module FinancialTransactionsHelper
                                      occurred_in: transaction[:occurred_in])
   end
 
-  def split(line)
+  def self.split(line)
     /(?<type>.)(?<date>........)(?<amount>..........)(?<cpf>...........)(?<card>............)(?<time>......)(?<store>.*)/.match(line)
   end
 
-  def extract_store(names)
+  def self.extract_store(names)
     names.last(STORE_SIZE).squish
   end
 
-  def extract_owner(names)
+  def self.extract_owner(names)
     names.first(OWNER_SIZE).squish
   end
 
-  def parse_to_currency(amount)
+  def self.parse_to_currency(amount)
     amount.to_d / DIVISOR_CURRENCY
   end
 
-  def parse_to_datetime(date, time)
+  def self.parse_to_datetime(date, time)
     DateTime.parse("#{date}#{time}")
   end
 end

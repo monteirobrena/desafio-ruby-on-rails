@@ -1,7 +1,9 @@
 class FinancialTransactionsController < ApplicationController
   def create
     begin
-      file_upload(params[:cnab_file])
+      filename = file_upload(params[:cnab_file])
+
+      ImportCnabData.perform_later(filename)
 
       flash.now[:info] = t('notifications.upload.success')
       render :new
@@ -18,5 +20,7 @@ class FinancialTransactionsController < ApplicationController
     File.open(File.join('tmp', 'storage', file.original_filename), 'wb') do |f|
       f.write(file.read)
     end
+
+    file.original_filename
   end
 end
