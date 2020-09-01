@@ -1,0 +1,8 @@
+<div>
+  <h1>Upload CNAB</h1>
+  <%= form_tag({action: :create}, multipart: true) do %>
+    <%= label_tag 'Select CNAB.txt' %>
+    <%= file_field_tag :cnab_file, accept: 'text/txt' %>
+    <%= button_tag "Upload", type: :submit %>
+  <% end %>
+</div>  
