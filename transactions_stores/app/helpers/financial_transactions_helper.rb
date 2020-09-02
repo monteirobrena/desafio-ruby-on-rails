@@ -3,8 +3,16 @@ module FinancialTransactionsHelper
   OWNER_SIZE = 14
   DIVISOR_CURRENCY = 100.00
 
-  def self.read_file_to_save_data(filename)
-    File.open(filename, 'r').each_line do |line|
+  def self.upload(file)
+    File.open(File.join('tmp', 'storage', file.original_filename), 'wb') do |f|
+      f.write(file.read)
+    end
+
+    file
+  end
+
+  def self.read_file_to_save_data(file)
+    file.each_line do |line|
       data = split(line)
 
       save({ cpf: data[:cpf],
