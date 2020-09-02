@@ -12,7 +12,7 @@ RSpec.describe Store, type: :model do
     it { should have_many(:transactions) }
   end
 
-  describe 'should return list of transactions' do
+  describe 'should return list of transactions by name' do
     let(:store) { 'Amazon' }
 
     before do
