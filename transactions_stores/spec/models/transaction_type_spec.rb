@@ -18,7 +18,7 @@ RSpec.describe TransactionType, type: :model do
 
   describe 'should return list of ids from transactions types by origin' do
     before do
-      TransactionType.create(id: 2, description: 'Boleto', origin: 1)
+      TransactionType.create(id: 2, description: 'Débito', origin: 1)
       TransactionType.create(id: 3, description: 'Financiamento', origin: 1)
     end
 
