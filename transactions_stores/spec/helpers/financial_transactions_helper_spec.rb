@@ -13,7 +13,7 @@ RSpec.describe FinancialTransactionsHelper, type: :helper do
       Transaction.destroy_all
       TransactionType.create(id: 1, description: 'Débito', origin: 0)
 
-      FinancialTransactionsHelper.read_file_to_save_data(file_fixture('cnab.txt'))
+      FinancialTransactionsHelper.read_file_to_save_data('spec/fixtures/files', 'cnab.txt')
     }
 
     it { expect(Transaction.first).to_not be_nil }

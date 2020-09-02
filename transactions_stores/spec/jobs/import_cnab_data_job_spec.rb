@@ -9,13 +9,13 @@ RSpec.describe ImportCnabDataJob, type: :job do
   }
 
   describe 'perform later job added to queue' do
-    it { expect { ImportCnabDataJob.perform_later(file_fixture('cnab.txt').read) }.to enqueue_job }
-    it { expect { ImportCnabDataJob.perform_later(file_fixture('cnab.txt').read) }.to have_enqueued_job.on_queue("import").at(:no_wait) }
+    it { expect { ImportCnabDataJob.perform_later('spec/fixtures/files', 'cnab.txt') }.to enqueue_job }
+    it { expect { ImportCnabDataJob.perform_later('spec/fixtures/files', 'cnab.txt') }.to have_enqueued_job.on_queue("import").at(:no_wait) }
   end
 
   describe 'job executed' do
     before {
-      ImportCnabDataJob.perform_now(file_fixture('cnab.txt').read)
+      ImportCnabDataJob.perform_now('spec/fixtures/files', 'cnab.txt')
     }
 
     it { expect(Transaction.count).to eql(1) }

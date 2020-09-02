@@ -11,8 +11,8 @@ module FinancialTransactionsHelper
     file
   end
 
-  def self.read_file_to_save_data(file)
-    file.each_line do |line|
+  def self.read_file_to_save_data(path, filename)
+    File.open(File.join(path, filename), 'r').each_line do |line| 
       data = split(line)
 
       save({ cpf: data[:cpf],
