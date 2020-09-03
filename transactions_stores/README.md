@@ -6,6 +6,25 @@ Este projeto permite o upload de um arquivo de texto (.txt) contendo as informa�
 
 Essas informações são salvas no banco de dados e disponibilizadas através de um endpoint (`v1/financial_transactions?store_name=[:store_name]`) na API.
 
+## Docker
+
+Para rodar esse projeto com Docker execute os comandos:
+
+```
+docker-compose build
+docker-compose up
+docker-compose run api rake db:create RAILS_ENV=development
+docker-compose run api rake db:migrate RAILS_ENV=development
+docker-compose run api rake db:seed RAILS_ENV=development
+```
+
+No arquivo `config/database.yml` altere o host para `db`:
+
+```
+development:
+  host: db
+```
+
 ## Instalação
 
 Para executar o projeto é preciso possuir:
@@ -40,6 +59,13 @@ Para criar os tipos de transações execute o comando:
 
 ```
 rake db:seed
+```
+
+No arquivo `config/database.yml` altere o host para `localhost`:
+
+```
+development:
+  host: localhost
 ```
 
 ## Execução
